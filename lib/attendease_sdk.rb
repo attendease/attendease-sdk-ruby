@@ -22,7 +22,6 @@ module AttendeaseSDK
     def set_event_id
       begin
         event_properties = AttendeaseSDK::Event.subdomain
-        puts "Fetched properties for Event: #{event_properties['name']} - #{event_properties['id']}"
       rescue AttendeaseSDK::ConnectionError => e
         puts "Error Properties for subdomain: #{@event_subdomain} failed to be retrieved - reason: #{e.message}"
       rescue AttendeaseSDK::DomainError => e
