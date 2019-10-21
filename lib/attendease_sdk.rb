@@ -30,7 +30,6 @@ module AttendeaseSDK
 
       if event_properties.present?
         @event_id = event_properties['id']
-        puts "Setting AttendeaseSDK.event_id as #{@event_id}"
       else
         puts "Error: Could not set AttendeaseSDK.event_id"
       end
@@ -59,7 +58,7 @@ module AttendeaseSDK
       when 'development'
         "https://dashboard.localhost.attendease.com/"
       when 'production'
-        "https://dashboard.attendease.com/"    
+        "https://dashboard.attendease.com/"
       end
     end
 
