@@ -1,4 +1,4 @@
-$:.unshift File.dirname(__FILE__)
+$LOAD_PATH.unshift File.dirname(__FILE__)
 require 'active_support/all'
 require 'attendease_sdk/version'
 require 'attendease_sdk/admin/attendease_sdk_admin'
@@ -7,16 +7,12 @@ require 'attendease_sdk/event/attendease_sdk_event'
 require 'httparty'
 
 module AttendeaseSDK
-
   class << self
-
     attr_accessor :user_token, :event_token, :event_id, :environment, :event_subdomain, :subdomain
 
     def event_subdomain=(value)
       @event_subdomain = value
-      if event_id.blank?
-        set_event_id
-      end
+      set_event_id if event_id.blank?
     end
 
     def set_event_id
@@ -31,64 +27,68 @@ module AttendeaseSDK
       if event_properties.present?
         @event_id = event_properties['id']
       else
-        puts "Error: Could not set AttendeaseSDK.event_id"
+        puts 'Error: Could not set AttendeaseSDK.event_id'
       end
     end
 
     def admin_headers
       {
-        "Content-Type" => "application/json",
-        "X-User-Token" => user_token,
+        'Content-Type' => 'application/json',
+        'X-User-Token' => user_token
       }
     end
 
     def event_headers
       headers = {}
-      headers["Content-Type"] = "application/json"
-      headers["X-Event-Token"] = event_token if event_token.present?
+      headers['Content-Type'] = 'application/json'
+      headers['X-Event-Token'] = event_token if event_token.present?
       headers
     end
 
     def admin_base_url
       case environment
-      when 'preview'
-        "https://dashboard.ci.attendease.com/"
+      when 'staging'
+        'https://dashboard.staging.attendease.com/'
       when 'prerelease'
-        "https://dashboard.preview.attendease.com/"
+        'https://dashboard.prerelease.attendease.com/'
       when 'development'
-        "https://dashboard.localhost.attendease.com/"
+        'https://dashboard.localhost.attendease.com/'
       when 'production'
-        "https://dashboard.attendease.com/"
+        'https://dashboard.attendease.com/'
+      when 'sandbox'
+        'https://dashboard.sandbox.attendease.com/'
       end
     end
 
     def event_base_url
       case environment
-      when 'preview'
-        "https://#{AttendeaseSDK.event_subdomain}.ci.attendease.com/api/"
+      when 'staging'
+        "https://#{AttendeaseSDK.event_subdomain}.staging.attendease.com/api/"
       when 'prerelease'
-        "https://#{AttendeaseSDK.event_subdomain}.preview.attendease.com/api/"
+        "https://#{AttendeaseSDK.event_subdomain}.prerelease.attendease.com/api/"
       when 'development'
         "https://#{AttendeaseSDK.event_subdomain}.localhost.attendease.com/api/"
       when 'production'
         "https://#{AttendeaseSDK.event_subdomain}.attendease.com/api/"
+      when 'sandbox'
+        "https://#{AttendeaseSDK.event_subdomain}.sandbox.attendease.com/api/"
       end
     end
 
-
     def organization_base_url
       case environment
-      when 'preview'
-        "https://#{AttendeaseSDK.subdomain}.ci.attendease.org/api/"
+      when 'staging'
+        "https://#{AttendeaseSDK.subdomain}.staging.attendease.org/api/"
       when 'prerelease'
-        "https://#{AttendeaseSDK.subdomain}.preview.attendease.org/api/"
+        "https://#{AttendeaseSDK.subdomain}.prerelease.attendease.org/api/"
       when 'development'
         "https://#{AttendeaseSDK.subdomain}.localhost.attendease.org/api/"
       when 'production'
         "https://#{AttendeaseSDK.subdomain}.attendease.org/api/"
+      when 'sandbox'
+        "https://#{AttendeaseSDK.subdomain}.sandbox.attendease.org/api/"
       end
     end
-
   end
 
   class ConnectionError < RuntimeError
@@ -96,5 +96,4 @@ module AttendeaseSDK
 
   class DomainError < RuntimeError
   end
-
 end
