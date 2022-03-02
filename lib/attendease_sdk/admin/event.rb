@@ -15,7 +15,7 @@ module AttendeaseSDK
       when 422
         raise DomainError.new(response.parsed_response['errors'].to_a.map{|error| "#{error[0]} #{error[1].join(",") }"}.join(", "))
       else
-        raise ConnectionError.new(), "#{response["error"]}"
+        raise ConnectionError.new(), response.parsed_response
       end
     end
 
@@ -32,7 +32,7 @@ module AttendeaseSDK
       when 422
         raise DomainError.new(response.parsed_response['errors'].to_a.map{|error| "#{error[0]} #{error[1].join(",") }"}.join(", "))
       else
-        raise ConnectionError.new(), "#{response["error"]}"
+        raise ConnectionError.new(), response.parsed_response
       end
     end
 
@@ -46,7 +46,7 @@ module AttendeaseSDK
       when 422
         raise DomainError.new(response.parsed_response['errors'].to_a.map{|error| "#{error[0]} #{error[1].join(",") }"}.join(", "))
       else
-        raise ConnectionError.new(), "#{response["error"]}"
+        raise ConnectionError.new(), response.parsed_response
       end
     end
 
@@ -63,7 +63,7 @@ module AttendeaseSDK
       when 422
         raise DomainError.new(response.parsed_response['errors'].to_a.map{|error| "#{error[0]} #{error[1].join(",") }"}.join(", "))
       else
-        raise ConnectionError.new(), "#{response["error"]}"
+        raise ConnectionError.new(), response.parsed_response
       end
     end
 
@@ -80,7 +80,7 @@ module AttendeaseSDK
       when 422
         raise DomainError.new(response.parsed_response['errors'].to_a.map{|error| "#{error[0]} #{error[1].join(",") }"}.join(", "))
       else
-        raise ConnectionError.new(), "#{response["error"]}"
+        raise ConnectionError.new(), response.parsed_response
       end
     end
 
@@ -94,7 +94,7 @@ module AttendeaseSDK
       when 422
         raise DomainError.new(response.parsed_response['errors'].to_a.map{|error| "#{error[0]} #{error[1].join(",") }"}.join(", "))
       else
-        raise ConnectionError.new(), "#{response["error"]}"
+        raise ConnectionError.new(), response.parsed_response
       end
     end
 
@@ -109,7 +109,7 @@ module AttendeaseSDK
       when 422
         raise DomainError.new(response.parsed_response['errors'].to_a.map{|error| "#{error[0]} #{error[1].join(",") }"}.join(", "))
       else
-        raise ConnectionError.new(), "#{response["error"]}"
+        raise ConnectionError.new(), response.parsed_response
       end
     end
 
@@ -121,7 +121,7 @@ module AttendeaseSDK
       when 422
         raise DomainError.new(response.parsed_response['errors'].to_a.map{|error| "#{error[0]} #{error[1].join(",") }"}.join(", "))
       else
-        raise ConnectionError.new(), "#{response["error"]}"
+        raise ConnectionError.new(), response.parsed_response
       end
     end
   end
