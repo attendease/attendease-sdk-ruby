@@ -51,12 +51,14 @@ module AttendeaseSDK
 
     def admin_base_url
       case environment
-      when 'preview'
-        "https://dashboard.ci.attendease.com/"
+      when 'sandbox'
+        "https://dashboard.sandbox.attendease.com/"
+      when 'staging'
+        "https://dashboard.staging.attendease.com/"
       when 'prerelease'
         "https://dashboard.preview.attendease.com/"
       when 'development'
-        "https://dashboard.localhost.attendease.com/"
+        "http://dashboard.localhost.attendease.com:8888/"
       when 'production'
         "https://dashboard.attendease.com/"
       end
@@ -64,10 +66,12 @@ module AttendeaseSDK
 
     def event_base_url
       case environment
-      when 'preview'
-        "https://#{AttendeaseSDK.event_subdomain}.ci.attendease.com/api/"
       when 'prerelease'
         "https://#{AttendeaseSDK.event_subdomain}.preview.attendease.com/api/"
+      when 'staging'
+        "https://#{AttendeaseSDK.event_subdomain}.staging.attendease.com/api/"
+      when 'sandbox'
+        "https://#{AttendeaseSDK.event_subdomain}.sandbox.attendease.com/api/"
       when 'development'
         "https://#{AttendeaseSDK.event_subdomain}.localhost.attendease.com/api/"
       when 'production'
@@ -78,10 +82,12 @@ module AttendeaseSDK
 
     def organization_base_url
       case environment
-      when 'preview'
-        "https://#{AttendeaseSDK.subdomain}.ci.attendease.org/api/"
       when 'prerelease'
         "https://#{AttendeaseSDK.subdomain}.preview.attendease.org/api/"
+      when 'sandbox'
+        "https://#{AttendeaseSDK.subdomain}.sandbox.attendease.org/api/"
+      when 'staging'
+        "https://#{AttendeaseSDK.subdomain}.staging.attendease.org/api/"
       when 'development'
         "https://#{AttendeaseSDK.subdomain}.localhost.attendease.org/api/"
       when 'production'
