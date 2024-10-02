@@ -39,6 +39,7 @@ module AttendeaseSDK
       {
         "Content-Type" => "application/json",
         "X-User-Token" => user_token,
+        "User-Agent" => "AttendeaseSDK Ruby Gem #{AttendeaseSDK::VERSION}"
       }
     end
 

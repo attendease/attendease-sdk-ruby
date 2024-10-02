@@ -6,8 +6,8 @@ require 'attendease_sdk/version'
 Gem::Specification.new do |spec|
   spec.name          = "attendease_sdk"
   spec.version       = AttendeaseSDK::VERSION
-  spec.authors       = ["Brandon"]
-  spec.email         = ["brandon@attendease.com"]
+  spec.authors       = ["Jamie Lubiner"]
+  spec.email         = ["jamie@attendease.com"]
 
   spec.summary       = "AttendeaseSDK for Ruby"
   spec.description   = "A Ruby wrapper for the Attendease API"
